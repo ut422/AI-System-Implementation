@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: faa99ded4ed95e24384e1b856b053831
+labels:
+- ArtificialIntelligence
+- Behavior
+- BehaviorTree
+- State
+- VisualScripting
+- StateMachine
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
