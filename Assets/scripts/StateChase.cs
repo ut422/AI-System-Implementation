@@ -2,28 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-    public class StateChase : State
+public class StateChase : State
+{
+
+    public StateChase(AIController ai) : base(ai) { }
+
+    // called when the state is entered
+    public override void Enter()
     {
-
-        public StateChase(AIController ai) : base(ai) { }
-
-        public override void Enter()
-        {
         Debug.Log("entering chase state");
-        }
+    }
 
-        public override void Update()
-        {
-            ai.ChasePlayer();
-           if (!ai.CanSeePlayer())
-           {
-               ai.ChangeState(new StateSeatchForPlayer(ai));
-           }
-        }
+    // called every frame while the state is active
+    public override void Update()
+    {
+        // AI chases the player
+        ai.ChasePlayer();
 
-        public override void Exit()
+        // if the AI can no longer see the player, switch to search state
+        if (!ai.CanSeePlayer())
         {
-            Debug.Log("exiting chase state");
+            ai.ChangeState(new StateSeatchForPlayer(ai));
         }
     }
 
+    // called when exiting the state
+    public override void Exit()
+    {
+        Debug.Log("exiting chase state");
+    }
+}

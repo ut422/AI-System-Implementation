@@ -30,7 +30,7 @@ public class SimpleCharacterController : MonoBehaviour
 
     void Update()
     {
-        // Ground check by tag
+        // tagged ground checking
         isGrounded = false;
         Collider[] colliders = Physics.OverlapSphere(groundCheck.position, groundDistance);
         foreach (var collider in colliders)
@@ -48,28 +48,28 @@ public class SimpleCharacterController : MonoBehaviour
             isJumping = false;
         }
 
-        // Movement input
+        // movement
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * moveSpeed * Time.deltaTime);
 
-        // Jump input
+        // jump
         if (Input.GetButtonDown("Jump") && isGrounded && !isJumping)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             isJumping = true;
         }
 
-        // Gravity
+        // gravity
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
 
     void OnDrawGizmosSelected()
     {
-        // Visualize ground check sphere in editor
+        // ground check sphere in editor
         if (groundCheck != null)
         {
             Gizmos.color = Color.green;
@@ -77,3 +77,5 @@ public class SimpleCharacterController : MonoBehaviour
         }
     }
 }
+
+
